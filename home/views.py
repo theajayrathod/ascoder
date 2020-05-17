@@ -22,3 +22,7 @@ def contact(request):
             contact.save()
             messages.success(request, "Your Message sent successfully.")
     return render(request, "home/contact.html")
+
+
+def search(request):
+    return HttpResponse("this is search")

@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}Search Result{% endblock title %}
+
+{% block js %}
+<script>
+let previews =  document.getElementsByClassName('preview');
+Array.from(previews).forEach((element)=>{
+  element.innerHTML = element.innerText;
+    })
+</script>
+{% endblock js %}
+
 {% block blogative %}active{% endblock blogative %}
 
 {% block body %}
@@ -25,7 +35,7 @@ Suggestions:
           <strong class="d-inline-block mb-2 text-primary">Article by {{post.author}}</strong>
           <h3 class="mb-0">{{post.title}}</h3>
           <div class="mb-1 text-muted">{{post.datetime}}</div>
-          <p class="card-text mb-auto">{{post.content | truncatechars:500}}</p>
+          <p class="card-text mb-auto"><div class = "preview">{{post.content | truncatechars:500| safe}}</div></p>
           <div class = "my-2">
           <a href="/blog/{{post.slug}}" role = "button" class="btn btn-primary">Continue reading</a>
           </div>

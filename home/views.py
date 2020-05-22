@@ -14,6 +14,7 @@ def home(request):
 def about(request):
     return render(request, "home/about.html")
 
+@login_required(login_url = 'handleLogin')
 def contact(request):
     if request.method == 'POST':
         name = request.POST['name']

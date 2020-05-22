@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'blog.apps.BlogConfig',
     'django.contrib.humanize',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+
             ],
         },
     },
@@ -131,3 +134,14 @@ STATICFILES_DIRS = [
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'rathodajay60@gmail.com'
+EMAIL_HOST_PASSWORD = 'ironman3'
+
+
+
+

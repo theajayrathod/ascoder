@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}home{% endblock title %}
+{% block homeative %}active{% endblock homeative %}
+
+{% block body %}
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-3 my-3">
+            <h4>Questions</h4>
+            <p>
+                <a class="btn btn-secondary my-3" data-toggle="collapse"
+                    href="#Question_Answer" role="button" aria-expanded="false"
+                    aria-controls="Question_Answer">
+                    Question For You
+                </a>
+            </p>
+
+        </div>
+
+        <div class="col-md-6 my-3">
+            <h4>Question For You</h4>
+            <div class="collapse" id="Question_Answer">
+                <div class="row no-gutters border rounded overflow-hidden
+                    flex-md-row mb-4
+                    my-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        {% comment %} <strong class="d-inline-block mb-2 text-primary">World</strong> {% endcomment %}
+                        {% comment %} <h3 class="mb-0">Featured post</h3> {% endcomment %}
+                        <p class="card-text mb-auto"><b>This is a wider card with
+                            supporting text
+                            below as a natural lead-in to additional content.</b></p>
+                        <div class="mb-1 text-muted">Nov 12</div>
+                        <div>
+                        <a href="#"><i class = "fa fa-reply-all"></i>&nbsp;Answer</a>
+                        </div>
+                        <div style = "margin-left:100px;margin-top:-24px;">
+                        <a href="#"><i class = "fa fa-wifi"></i>&nbsp;Follow</a>
+                        </div>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

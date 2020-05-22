@@ -2,8 +2,10 @@ from django.shortcuts import render, HttpResponse, redirect
 from home.models import *
 from blog.models import *
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
 
 # Create your views here.
 def home(request):
@@ -39,6 +41,14 @@ def search(request):
             messages.warning(request, "No search result found . Please refine your query")
     params = {'allPosts':allPosts, 'query':query}
     return render(request, "home/search.html", params)
+
+
+def answer(request):
+    return render(request, "home/answer.html")
+
+@login_required(login_url = 'handleLogin')
+def user(request):
+    return render(request, "home/user.html")
 
 
 def handleSignup(request):

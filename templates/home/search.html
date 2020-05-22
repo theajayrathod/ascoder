@@ -16,7 +16,7 @@ Array.from(previews).forEach((element)=>{
 {% block body %}
 <div class="container">
   <h2>Search Result :</h2>
-  {% if allPosts|length <1 %}
+  {% if allPosts|length < 1 %}
   <p>No search results</p>
 
   Your search - <b>{{query}}</b> ... - did not match any documents. <br>
@@ -24,7 +24,7 @@ Array.from(previews).forEach((element)=>{
   <ul>
     <li>Make sure that all words are spelled correctly.</li>
     <li>Try different keywords.</li>
-    <li>Try more general keywords.</li>
+    <li>Try more general keywords.</li>  
   </ul>
   {% endif %}
 
@@ -36,8 +36,7 @@ Array.from(previews).forEach((element)=>{
         {{post.author}}</strong>
       <h3 class="mb-0">{{post.title}}</h3>
       <div class="mb-1 text-muted">{{post.datetime}}</div>
-      <p class="card-text mb-auto"><div class="preview">{{post.content |
-          truncatechars:500| safe}}</div></p>
+      <p class="card-text mb-auto"><div class="preview">{{post.content | truncatechars:500| safe}}</div></p>
       <div class="my-2">
         <a href="/blog/{{post.slug}}" role="button" class="btn btn-primary">Continue
           reading</a>

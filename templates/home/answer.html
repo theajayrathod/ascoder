@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}home{% endblock title %}
+
+
 {% block homeative %}active{% endblock homeative %}
+
+
 
 {% block body %}
 <div class="container my-3">
@@ -17,25 +21,25 @@
             </p>
 
         </div>
-
         <div class="col-md-6 my-3">
             <h4>Question For You</h4>
+            {% for question in questions %}
             <div class="collapse" id="Question_Answer">
                 <div class="row no-gutters border rounded overflow-hidden
                     flex-md-row mb-4
                     my-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
-                        {% comment %} <strong class="d-inline-block mb-2 text-primary">World</strong> {% endcomment %}
-                        {% comment %} <h3 class="mb-0">Featured post</h3> {% endcomment %}
-                        <a href=""><p class="card-text mb-auto"><b>This is a wider card with
-                            supporting text
-                            below as a natural lead-in to additional content.</b></p></a>
-                        <div class="mb-1 text-muted">Nov 12</div>
+                        <div class="mb-1 text-muted" style="font-size:13px;">{{question.created_at}}</div>
                         <div>
-                        <a href="#"><i class = "fa fa-reply-all"></i>&nbsp;Answer</a>
-                        </div>
-                        <div style = "margin-left:100px;margin-top:-24px;">
-                        <a href="#"><i class = "fa fa-wifi"></i>&nbsp;Follow</a>
+                        <a href="unanswer/{{question.sno}}"><p class="card-text
+                                mb-auto"><b>{{question.title}}</b></p></a>
+                                </div>
+                        <div style="margin-top:10px;">
+                            <a href="#answer_one{{question.sno}}"
+                                data-toggle="collapse" role="button"
+                                aria-expanded="false"
+                                aria-controls="collapseExample"><i class="fa
+                                    fa-reply-all"></i>&nbsp;<b>Answer</b></a>
                         </div>
                     </div>
                     <div class="col-auto d-none d-lg-block">
@@ -43,6 +47,17 @@
                     </div>
                 </div>
             </div>
+            <form action="/answer" method = "POST" >
+            {% csrf_token %}
+            <input type="hidden" name="question" value="{{question.sno}}">
+            <div class="collapse" id="answer_one{{question.sno}}">
+                <div class="card card-body" style = "margin-top:-24px;">
+                    <textarea name="answer" id="answer" cols="30" rows="10"></textarea>
+                    <button type="submit" class="btn btn-primary my-2">Submit</button>
+                </div>
+            </div>
+            </form>
+            {% endfor %}
         </div>
     </div>
 </div>

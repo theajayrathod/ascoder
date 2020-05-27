@@ -28,9 +28,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <form action = "" method = "">
+            <form action = "/addqn" method = "POST">
             {% csrf_token %}
-              <textarea name="" id="" cols="30" rows="2" class = "form-control"></textarea>
+              <textarea name="title" id="title" cols="30" rows="2" class = "form-control"></textarea>
              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary my-2">Submit</button>
             </form>
@@ -54,12 +54,22 @@
       <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4
         my-4 shadow-sm h-md-250  position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">World</strong>
-          <h3 class="mb-0">Featured post</h3>
-          <div class="mb-1 text-muted">Nov 12</div>
+        <div style  = "margin-right:250px;">
+        <img class="rounded mx-auto d-block   p-2 border border-dark"
+        src="/static/images/user.png" alt="user" style ="width :40px;margin-top:-10px;" > 
+         </div>
+         <div style = "margin-left:70px;margin-top:-40px;margin-left:50px;">
+         <a href=""> <strong class="d-inline-block mb-2 text-primary" >{{request.user}}</strong></a>
+          </div>
+          <div class="mb-1 text-muted" style = "margin-left:50px;margin-top:-12px;font-size:13px;">Nov 12</div>
+          <div class = "my-2">
+          <a href="" style = "color:black;"><h5>What is django?</h5></a>
+          </div>
+          <div>
           <p class="card-text mb-auto">This is a wider card with supporting text
             below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
+          </div>
+          {% comment %} <a href="#" class="stretched-link">Continue reading</a> {% endcomment %}
         </div>
         <div class="col-auto d-none d-lg-block">
 

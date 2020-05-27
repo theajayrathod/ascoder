@@ -10,6 +10,8 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('answer', views.answer, name='answer'),
     path('user', views.user, name='user'),
+	path('addqn', views.addqn, name='addqn'),
+	path('unanswer/<str:sno>/', views.unanswer, name='unanswer'),
 
     path('signup', views.handleSignup, name='handleSignup'),
     path('login', views.handleLogin, name='handleLogin'),

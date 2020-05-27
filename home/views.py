@@ -44,8 +44,36 @@ def search(request):
     return render(request, "home/search.html", params)
 
 
+
+
 def answer(request):
-    return render(request, "home/answer.html")
+    questions = AddQuestion.objects.all().order_by("-sno")
+    context = {'questions':questions}
+    question_id = request.POST.get('question', '')
+    print("Minjara")
+    print(question_id)
+
+    if request.method == 'POST':
+        answer = request.POST.get('answer', '')
+        answers = Addanswer(ques_id= question_id,answer = answer)
+        answers.save()
+    return render(request, "home/answer.html", context)
+
+def addqn(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        question = AddQuestion(title = title)
+        question.save() 
+        obj = AddQuestion.objects.latest('sno')
+        url = "/unanswer/"+str(obj.sno)
+    return redirect(url)
+
+
+def unanswer(request, sno):
+    questions = AddQuestion.objects.filter(sno = sno)
+    answers = Addanswer.objects.filter(ques_id=sno)
+    context = {'questions':questions, 'answers':answers}
+    return render(request, "home/unanswer.html", context)
 
 @login_required(login_url = 'handleLogin')
 def user(request):

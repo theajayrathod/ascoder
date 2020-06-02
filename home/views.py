@@ -15,7 +15,7 @@ def home(request):
         answer = request.POST.get('answer', '')
         createposts = CreatePost(question = question, answer = answer)
         createposts.save()
-    createposts = CreatePost.objects.all()
+    createposts = CreatePost.objects.all().order_by("-sno")
     context = {'createposts':createposts}
     return render(request, "home/home.html", context)
 

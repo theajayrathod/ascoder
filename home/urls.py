@@ -12,6 +12,8 @@ urlpatterns = [
     path('user', views.user, name='user'),
 	path('addqn', views.addqn, name='addqn'),
 	path('unanswer/<str:sno>/', views.unanswer, name='unanswer'),
+	path('setting', views.setting, name='setting'),
+
 
     path('signup', views.handleSignup, name='handleSignup'),
     path('login', views.handleLogin, name='handleLogin'),

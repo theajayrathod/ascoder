@@ -7,12 +7,25 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 
+
 # Create your views here.
 def home(request):
-    return render(request, "home/home.html")
+    if request.method == 'POST':
+        question = request.POST.get('question', '')
+        answer = request.POST.get('answer', '')
+        createposts = CreatePost(question = question, answer = answer)
+        createposts.save()
+    createposts = CreatePost.objects.all()
+    context = {'createposts':createposts}
+    return render(request, "home/home.html", context)
 
+@login_required(login_url = 'handleLogin')
 def about(request):
     return render(request, "home/about.html")
+
+@login_required(login_url = 'handleLogin')
+def setting(request):
+    return render(request, "home/setting.html")
 
 @login_required(login_url = 'handleLogin')
 def contact(request):
@@ -50,8 +63,6 @@ def answer(request):
     questions = AddQuestion.objects.all().order_by("-sno")
     context = {'questions':questions}
     question_id = request.POST.get('question', '')
-    print("Minjara")
-    print(question_id)
 
     if request.method == 'POST':
         answer = request.POST.get('answer', '')
@@ -59,6 +70,8 @@ def answer(request):
         answers.save()
     return render(request, "home/answer.html", context)
 
+
+@login_required(login_url = 'handleLogin')
 def addqn(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -69,11 +82,19 @@ def addqn(request):
     return redirect(url)
 
 
+@login_required(login_url = 'handleLogin')
 def unanswer(request, sno):
     questions = AddQuestion.objects.filter(sno = sno)
+
+    if request.method == 'POST':
+        answer = request.POST.get('answer', '')
+        addanswer = Addanswer(ques_id = sno,answer = answer)
+        addanswer.save()
     answers = Addanswer.objects.filter(ques_id=sno)
     context = {'questions':questions, 'answers':answers}
+
     return render(request, "home/unanswer.html", context)
+
 
 @login_required(login_url = 'handleLogin')
 def user(request):
@@ -92,7 +113,7 @@ def handleSignup(request):
 
         # check for errorneous inputs
         if len(username) > 10:
-                    messages.error(request, "username must unser 10 charecter")
+                    messages.error(request, "username must under 10 charecter")
                     return redirect('home')
 
         if not username.isalnum():

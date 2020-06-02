@@ -34,6 +34,7 @@
                         <a href="unanswer/{{question.sno}}"><p class="card-text
                                 mb-auto"><b>{{question.title}}</b></p></a>
                                 </div>
+                                {% if user.is_authenticated %}
                         <div style="margin-top:10px;">
                             <a href="#answer_one{{question.sno}}"
                                 data-toggle="collapse" role="button"
@@ -41,6 +42,9 @@
                                 aria-controls="collapseExample"><i class="fa
                                     fa-reply-all"></i>&nbsp;<b>Answer</b></a>
                         </div>
+                        {% else %}
+                        <button class = "btn btn-primary">please login for given answer</button>
+                        {% endif %}
                     </div>
                     <div class="col-auto d-none d-lg-block">
 

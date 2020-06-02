@@ -28,10 +28,22 @@ class AddQuestion(models.Model):
 
 class Addanswer(models.Model):
     sno = models.AutoField(primary_key = True)
-    ques_id = models.IntegerField()
+    ques_id = models.IntegerField(default=True)
+    img_ans = models.ImageField(null = True, blank = True)
     answer = models.TextField()
     author = models.CharField(max_length = 13)
     slug = models.CharField(max_length = 130)
+
+
+    def __str__(self):
+        return  self.author
+
+
+class CreatePost(models.Model):
+    sno = models.AutoField(primary_key = True)
+    question = models.CharField(max_length = 255)
+    answer = models.TextField()
+    author = models.CharField(max_length = 13)
 
 
     def __str__(self):
